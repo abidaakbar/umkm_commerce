@@ -16,12 +16,8 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 |--------------------------------------------------------------------------
 */
 
-// --- INI PERUBAHAN UTAMA ---
-// Kita tetapkan lagi bahwa halaman utama (/) adalah HomeController Anda.
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
-// --- Rute Publik (Bisa diakses semua orang) ---
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
@@ -53,6 +49,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('orders', AdminOrderController::class)->only(['index', 'edit', 'update', 'destroy']);
 });
 
-// Baris ini ditambahkan oleh Breeze dan PENTING, jangan dihapus.
-// Ini yang memuat semua rute untuk login, register, logout, dll.
+
 require __DIR__ . '/auth.php';
