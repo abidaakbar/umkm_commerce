@@ -56,9 +56,6 @@ class CartController extends Controller
     public function update(Request $request, CartItem $item)
     {
         $request->validate(['quantity' => 'required|integer|min:1']);
-        
-        // This functionality will be fully implemented by your teammate.
-        // $this->authorize('update', $item);
 
         $item->update(['qty' => $request->quantity]);
 
@@ -70,9 +67,6 @@ class CartController extends Controller
      */
     public function remove(CartItem $item)
     {
-        // This functionality will be fully implemented by your teammate.
-        // $this->authorize('delete', $item);
-
         $item->delete();
 
         return redirect()->route('cart.index')->with('success', 'Item removed from cart!');
