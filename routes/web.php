@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +50,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::resource('products', AdminProductController::class);
-    Route::resource('orders', \App\Http\controllers\Admin\OrderController::class)->only(['index', 'show', 'update']);
+    Route::resource('orders', AdminOrderController::class)->only(['index', 'edit', 'update', 'destroy']);
 });
 
 // Baris ini ditambahkan oleh Breeze dan PENTING, jangan dihapus.

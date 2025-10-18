@@ -15,13 +15,19 @@
                     {{-- <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                         {{ __('Products') }}
                     </x-nav-link> --}}
-                    <x-nav-link :href="Auth::user()->role === 'admin' ? route('admin.products.index') : route('products.index')" :active="request()->routeIs(Auth::user()->role === 'admin' ? 'admin.products.index' : 'products.index')">
+                    <x-nav-link :href="optional(Auth::user())->role === 'admin' ? route('admin.products.index') : route('products.index')" :active="request()->routeIs(optional(Auth::user())->role === 'admin' ? 'admin.products.index' : 'products.index')">
                         {{ __('Products') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
+
+                    {{-- <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
+                        {{ __('Cart') }}
+                    </x-nav-link> --}}
+                    <x-nav-link :href="optional(Auth::user())->role === 'admin' ? route('admin.orders.index') : route('cart.index')" :active="request()->routeIs(optional(Auth::user())->role === 'admin' ? 'admin.orders.index' : 'cart.index')">
                         {{ __('Cart') }}
                     </x-nav-link>
+
+
                 </div>
             </div>
 
