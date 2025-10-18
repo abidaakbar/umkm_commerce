@@ -17,16 +17,11 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             
-            {{-- This is the navigation bar added by Breeze. It's important! --}}
+            
             @include('layouts.navigation')
 
             <!-- Page Content -->
             <main>
-                {{-- 
-                    This is the main fix. We are replacing the component's '$slot' 
-                    with the traditional '@yield' directive to make it compatible
-                    with all the views we have already created (home, products, cart, etc.)
-                --}}
                 @yield('content')
             </main>
 
