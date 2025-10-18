@@ -9,5 +9,4 @@
         </a>
     </div>
 
-    {{-- You can add a section for featured products here later --}}
 @endsection
