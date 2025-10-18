@@ -5,14 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @property int $id
- * @property string $name
- * @property float $price
- * @property int $stock
- * @property int $category_id
- * @property bool $is_active
- */
+
 class Product extends Model
 {
     use HasFactory;
