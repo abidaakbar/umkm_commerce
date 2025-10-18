@@ -3,30 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    /**
+     * Display a paginated list of all active products.
+     * Allows for searching by name and filtering by category.
+     */
     public function index(Request $request)
     {
-        // Start with a query for active products
+        // 2. Start building the query for active products
         $query = Product::where('is_active', true);
 
-        // If a search term is provided, filter products by name
-        if ($request->has('search')) {
-            $query->where('name', 'like', '%' . $request->input('search') . '%');
+        // 3. If a search term is provided, filter products by name
+        if ($request->has('search') && $request->search != '') {
+            $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        // Get the filtered products, ordered by the newest first, and paginate them
-        $products = $query->latest()->paginate(12); // Show 12 products per page
+        // 4. If a category is selected, filter products by that category
+        if ($request->has('category_id') && $request->category_id != '') {
+            $query->where('category_id', $request->category_id);
+        }
 
-        return view('products.index', compact('products'));
+        // 5. Get all categories to pass to the view for the filter dropdown
+        $categories = Category::all();
+
+        // 6. Execute the final query, order by newest, and paginate
+        $products = $query->latest()->paginate(12)->withQueryString();
+
+        // 7. Return the view with all the necessary data
+        return view('products.index', compact('products', 'categories'));
     }
-    
+
+    /**
+     * Display the specified product.
+     */
     public function show(Product $product)
     {
-        // The product is automatically fetched by Laravel's route model binding
         return view('products.show', compact('product'));
     }
 }
-
