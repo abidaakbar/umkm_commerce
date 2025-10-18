@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * @property int $id
+ * @property string $name
+ * @property float $price
+ * @property int $stock
+ * @property int $category_id
+ * @property bool $is_active
+ */
+class Product extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'price',
+        'stock',
+        'category_id',
+        'is_active',
+    ];
+
+    /**
+     * A product belongs to a single category.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+}
+
