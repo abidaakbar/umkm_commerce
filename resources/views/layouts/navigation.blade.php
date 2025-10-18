@@ -31,7 +31,6 @@
                 </div>
             </div>
 
-            <!-- This is the main fix: We show different content based on auth status -->
             @auth
                 <!-- Settings Dropdown for Logged-in Users -->
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
