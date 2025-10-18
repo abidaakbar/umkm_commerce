@@ -7,13 +7,6 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a paginated list of all active products.
-     * Allows for searching by name.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
-     */
     public function index(Request $request)
     {
         // Start with a query for active products
@@ -29,13 +22,7 @@ class ProductController extends Controller
 
         return view('products.index', compact('products'));
     }
-
-    /**
-     * Display the specified product.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\View\View
-     */
+    
     public function show(Product $product)
     {
         // The product is automatically fetched by Laravel's route model binding
